@@ -1,0 +1,38 @@
+.search-container {
+    float: left;
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+.search-container button {
+    float: right;
+    padding: 4px 10px;
+    margin-right: 16px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
+
+.search-container button:hover {
+    background: #ccc;
+}
+table{
+    border-radius: 15px;
+}
+
+#myProgress {
+    width: 100%;
+}
+#myBar {
+    width: 0%;
+    height: 30px;
+    background-color: green;
+}
+th{
+    /*border-radius: 15px;*/
+    background-color: #FF6347;
+}
