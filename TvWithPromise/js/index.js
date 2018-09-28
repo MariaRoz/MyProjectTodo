@@ -2,16 +2,17 @@ const rooturl = 'http://api.tvmaze.com/search/shows?q=';
 const headers = ["Show name","Language","Genres","Status of show","Rating"];
 var isReversed= false;
 
-function showSearch(query) {
+function showSearch(query) { //функция возращает массив объектов с Api
     return fetch(rooturl + encodeURIComponent(query)).then(res => res.json());
 }
-getComponents("girl");
 
-function search() {
+function search() { //передаем значение с инпута в функцию getComponents
     getComponents(document.getElementById("show").value);
 }
 
-function getComponents(data) {
+getComponents("girl");
+
+function getComponents(data) { //функция обрабатывает массив объектов с Api и приобразует его в массив значений
     let array = [];
     showSearch(data).then(function (res) {
         for (let i = 0; i < res.length; i++) {
@@ -21,38 +22,34 @@ function getComponents(data) {
         return array;
     })
         .then(function (res) {
+            let error = document.getElementById("error");
             if (res.length === 0) {
-                document.write("По данному запросу нет данных");
-                var button = document.createElement("button");
-                button.innerHTML = "Клик";
-                // let error = document.getElementById("error");
-                // error.innerHTML = "По данному запросу нет данных"
-                // text.appendChild(err);
+                error.innerHTML = "По данному запросу нет данных";
+                document.body.appendChild(error);
             }
             else {
-                createTableAndSort(res)
+                error.innerHTML = " ";
+                createTableAndSort(res);
             }
-            ;
-
         })
 }
 
 function createTableAndSort(result) {
     function createTable(result) {
         result.unshift(headers);
-        var table = document.getElementById("table");
+        let table = document.getElementById("table");
         table.innerHTML = " ";
         for (let i = 0; i < result.length; i++) {
-            var tr = document.createElement("tr");
+            let tr = document.createElement("tr");
             for (let j = 0; j < result[i].length; j++) {
                 if (i === 0) {
-                    var th = document.createElement("th");
+                    let th = document.createElement("th");
                     th.innerHTML = result[i][j];
                     th.setAttribute("id",j);
                     tr.appendChild(th);
                 }
                 else {
-                    var td = document.createElement("td");
+                    let td = document.createElement("td");
                     td.innerText = result[i][j];
                     tr.appendChild(td);
                 }
@@ -64,7 +61,7 @@ function createTableAndSort(result) {
     }
     createTable(result);
 
-    function sortRating() {
+    function sortRating() { //функция для сортировки по рейтингу
         result.shift(headers);
         let rating =result.sort(function (a,b) {
             if (a[4] > b[4]) {
@@ -85,9 +82,9 @@ function createTableAndSort(result) {
         }
     }
 
-    function sortName() {
+    function sortName() { //функция для сортировки по имени
         result.shift(headers);
-        var name = result.sort();
+        let name = result.sort();
         if (isReversed) {
             createTable(name);
             isReversed = false;
