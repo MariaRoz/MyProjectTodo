@@ -1,5 +1,5 @@
 const rooturl = 'http://api.tvmaze.com/search/shows?q=';
-const headers = ["Show name","Language","Genres","Status of show","Rating"];
+const headers = ["Show name  <span class=\"glyphicon glyphicon-sort\"></span>","Language","Genres","Status of show","Rating  <span class=\"glyphicon glyphicon-sort\"></span>"];
 var isReversed= false;
 
 function showSearch(query) { //функция возращает массив объектов с Api
